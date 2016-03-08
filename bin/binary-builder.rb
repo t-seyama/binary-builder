@@ -52,6 +52,7 @@ recipe = case options[:name]
          when 'php7' then Php7Meal
          when 'nginx' then NginxRecipe
          when 'godep' then GodepMeal
+         when 'cppcms' then CppCMSRecipe
 end
 
 raise "Unsupported #{options[:name]}" unless recipe

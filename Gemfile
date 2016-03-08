@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'mini_portile', git: 'https://github.com/jtarchie/mini_portile'
+gem 'mini_portile2', "~> 2.2.0.rc1"
 
 group :test do
   gem 'rspec'

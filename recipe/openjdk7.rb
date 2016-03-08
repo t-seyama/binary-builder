@@ -1,5 +1,5 @@
 # encoding: utf-8
-require 'mini_portile'
+require 'mini_portile2'
 
 class OpenJDK7Recipe < MiniPortile
   def cook

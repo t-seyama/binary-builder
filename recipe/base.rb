@@ -1,5 +1,5 @@
 # encoding: utf-8
-require 'mini_portile'
+require 'mini_portile2'
 require 'tmpdir'
 require 'fileutils'
 require_relative 'determine_checksum'

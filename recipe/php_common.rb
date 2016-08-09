@@ -3,7 +3,21 @@ require_relative 'base'
 
 class RabbitMQRecipe < BaseRecipe
   def url
-    "https://github.com/alanxz/rabbitmq-c/releases/download/v#{version}/rabbitmq-c-#{version}.tar.gz"
+    "https://github.com/alanxz/rabbitmq-c/archive/v#{version}.tar.gz"
+  end
+
+  def work_path
+    File.join(tmp_path, "rabbitmq-c-#{@version}")
+  end
+
+  def configure
+  end
+
+  def compile
+    execute('compile', ['bash', '-c', 'cmake .'])
+    execute('compile', ['bash', '-c', 'cmake --build .'])
+    execute('compile', ['bash', '-c', 'cmake -DCMAKE_INSTALL_PREFIX=/usr/local .'])
+    execute('compile', ['bash', '-c', 'cmake --build . --target install'])
   end
 end
 
@@ -104,8 +118,7 @@ end
 class AmqpPeclRecipe < PeclRecipe
   def configure_options
     [
-      "--with-php-config=#{@php_path}/bin/php-config",
-      "--with-librabbitmq-dir=#{@rabbitmq_path}"
+      "--with-php-config=#{@php_path}/bin/php-config"
     ]
   end
 end
@@ -121,7 +134,7 @@ end
 
 class PHPProtobufPeclRecipe < PeclRecipe
   def url
-    "https://github.com/allegro/php-protobuf/archive/#{version}.tar.gz"
+    "https://github.com/allegro/php-protobuf/archive/v#{version}.tar.gz"
   end
 end
 
@@ -224,9 +237,9 @@ end
 # PHP 5 and PHP 7 Common recipes
 
 def amqppecl_recipe
-  AmqpPeclRecipe.new('amqp', '1.7.0', md5: '5a701987a5c9d1f1b70b359e14d5162e',
+  AmqpPeclRecipe.new('amqp', '1.7.1', md5: '901befb3ba9c906e88ae810f83599baf',
                                       php_path: php_recipe.path,
-                                      rabbitmq_path: rabbitmq_recipe.path)
+                                      rabbitmq_path: rabbitmq_recipe.work_path)
 end
 
 def lua_recipe

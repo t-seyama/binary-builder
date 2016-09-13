@@ -1,7 +1,7 @@
 # encoding: utf-8
 source 'https://rubygems.org'
 
-ruby '2.2.4'
+ruby '1.9.3'
 
 gem 'mini_portile', git: 'https://github.com/cf-buildpacks-eng/mini_portile'
 
@@ -12,6 +12,4 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop'
-  gem 'rubocop-rspec'
 end
